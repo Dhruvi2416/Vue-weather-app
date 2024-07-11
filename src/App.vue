@@ -1,5 +1,5 @@
 <template>
-  <div class="font-Roboto bg-weather-primary min-h-screen">
+  <div class="font-Roboto bg-weather-bg-primary min-h-screen">
     <Navigation />
 
     <RouterView />
@@ -8,7 +8,7 @@
 
 <script>
 import { RouterView } from "vue-router";
-import Navigation from "./components/Navigation.vue";
+import Navigation from "./components/navigation.vue";
 
 export default {
   components: {

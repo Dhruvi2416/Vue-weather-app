@@ -1,7 +1,7 @@
 <template>
-  <header class="sticky top-0 shadow-lg bg-weather-primary">
+  <header class="sticky top-0 shadow-lg bg-weather-bg-primary">
     <nav
-      class="container py-6 flex flex-col sm:flex-row text-white justify-center gap-4"
+      class="container py-6 flex flex-col sm:flex-row text-primary-white justify-center gap-4"
     >
       <RounterLink>
         <div class="gap-3 items-center justify-center flex">
