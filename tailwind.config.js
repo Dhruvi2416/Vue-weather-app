@@ -9,6 +9,8 @@ export default {
         "primary-white": "#ffffff",
         "primary-black": "#1d1d1d",
         "weather-bg-transparent": "#595b6c",
+        "data-bg-green": "#c4e9e9",
+        "link-color": "#0000EE",
       },
     },
     fontFamily: {

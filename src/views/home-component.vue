@@ -1,15 +1,18 @@
 <template>
-  <div class="flex">
-    <div
-      class="bg-weather-bg-transparent rounded-full text-primary-white text-3xl"
-    >
-      <h4 class="">
+  <div
+    class="rounded-full text-primary-white text-3xl flex flex-col bg-weather-bg-transparent"
+  >
+    <div class="flex flex-grow">
+      <h4 class="text-5xl">
         <slot name="title"></slot>
       </h4>
-      <div class="py-5">
+      <div class="flex-grow">
         <slot></slot>
       </div>
     </div>
+    <footer class="flex items-end pb-5 mt-auto">
+      <slot name="footer"></slot>
+    </footer>
   </div>
 </template>
 
@@ -22,9 +25,6 @@ export default {
       countries,
       selectedCountry: "",
     };
-  },
-  mounted() {
-    document.getElementById("search-city").focus();
   },
 };
 </script>
