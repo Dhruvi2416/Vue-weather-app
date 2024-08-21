@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-weather-bg-transparent rounded-3xl p-5">
-    <div class="flex">
+  <div class="bg-weather-bg-transparent rounded-3xl p-5 flex flex-grow">
+    <div class="flex flex-grow">
       <div>
         <div class="flex p-4">
           <img :src="sunCloud" class="rounded-full w-24 h-24 mr-8" />
@@ -34,7 +34,7 @@
             </template>
           </HomeComponent>
         </div>
-        <div class="flex w-full md:w-3/4 lg:w-3/4 p-4 overflow-auto">
+        <div class="flex md:w-1/2 p-4 overflow-auto">
           <div v-for="n in arr" :key="n">
             <div
               class="bg-data-bg-green m-2 p-2 rounded-3xl flex flex-col items-center"
@@ -62,7 +62,6 @@
 <script>
 import HomeComponent from "../../views/home-component.vue";
 import sunCloud from "/sun-cloud.png";
-import * as L from "leaflet";
 export default {
   name: "HourlyData",
   components: {
@@ -77,19 +76,6 @@ export default {
         19, 20, 21, 22, 23, 24,
       ],
     };
-  },
-  created() {
-    var map = L.map("map").setView([51.505, -0.09], 13);
-
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
-
-    L.marker([51.5, -0.09])
-      .addTo(map)
-      .bindPopup("A pretty CSS popup.<br> Easily customizable.")
-      .openPopup();
   },
 };
 </script>

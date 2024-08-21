@@ -1,10 +1,10 @@
 <template>
-  <div class="px-8 w-full">
-    <div class="text-primary-white flex justify-between items-center">
+  <div class="pl-8">
+    <div class="text-primary-white flex justify-between items-center flex-grow">
       <TodaysGreeting /><SearchCity />
     </div>
     <div class="mt-14 flex">
-      <HourlyData />
+      <HourlyData class="w-2/3" />
       <!-- <ViewMap /> -->
     </div>
   </div>

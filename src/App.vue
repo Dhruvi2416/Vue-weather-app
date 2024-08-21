@@ -1,5 +1,7 @@
 <template>
-  <div class="font-Roboto bg-weather-bg-primary min-h-screen">
+  <div
+    class="font-Roboto bg-weather-bg-primary min-h-screen w-full overflow-hidden"
+  >
     <!-- <Navigation /> -->
 
     <RouterView />

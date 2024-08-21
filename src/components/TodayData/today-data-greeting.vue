@@ -4,7 +4,7 @@
     <div class="flex flex-col">
       <div class="text-xl">Hi, Dhruvi</div>
       <div>
-        {{ todayData }}
+        {{ todayDate }}
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@ export default {
     this.year = this.today.getFullYear();
   },
   computed: {
-    todayData() {
+    todayDate() {
       return `${this.day}, ${this.date} ${this.month}, ${this.year}`;
     },
   },

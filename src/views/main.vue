@@ -1,7 +1,7 @@
 <template>
-  <div class="flex p-4 overflow-hidden min-h-screen">
+  <div class="flex p-4 min-h-screen">
     <SideBar class="flex flex-col" />
-    <TodaysData />
+    <TodaysData class="w-3/4 flex-grow" />
   </div>
 </template>
 
