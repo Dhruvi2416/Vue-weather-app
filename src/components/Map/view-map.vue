@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded-3xl border-weather-bg-transparent border-4"
+    class="rounded-3xl border-weather-bg-transparent border-4 flex flex-grow"
     id="mapContainer"
   ></div>
 </template>
