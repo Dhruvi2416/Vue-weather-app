@@ -1,7 +1,7 @@
 <template>
   <div class="bg-weather-bg-transparent rounded-3xl p-5 flex flex-grow">
-    <div class="flex flex-grow">
-      <div>
+    <div class="flex flex-grow overflow-hidden">
+      <div class="w-full">
         <div class="flex p-4">
           <img :src="sunCloud" class="rounded-full w-24 h-24 mr-8" />
           <HomeComponent class="flex flex-col space-y-4">
@@ -9,32 +9,32 @@
               ><div class="flex md:space-x-14 flex-nowrap">
                 <div>
                   <div>Berlin</div>
-                  <div class="text-xl">Germany</div>
+                  <div class="text-lg">Germany</div>
                 </div>
                 <div>
                   <div>+20º</div>
-                  <div class="text-xl">Temperature</div>
+                  <div class="text-lg">Temperature</div>
                 </div>
                 <div>
                   <div class="flex">
                     20
-                    <div class="text-xl flex items-end">%</div>
+                    <div class="text-lg flex items-end">%</div>
                   </div>
 
-                  <div class="text-xl">Humidity</div>
+                  <div class="text-lg">Humidity</div>
                 </div>
                 <div>
                   <div class="flex">
                     13
-                    <div class="text-xl flex items-end">km/h</div>
+                    <div class="text-lg flex items-end">km/h</div>
                   </div>
-                  <div class="text-xl">Wind Speed</div>
+                  <div class="text-lg">Wind Speed</div>
                 </div>
               </div>
             </template>
           </HomeComponent>
         </div>
-        <div class="flex md:w-1/2 p-4 overflow-auto">
+        <div class="flex p-4 overflow-auto">
           <div v-for="n in arr" :key="n">
             <div
               class="bg-data-bg-green m-2 p-2 rounded-3xl flex flex-col items-center"
