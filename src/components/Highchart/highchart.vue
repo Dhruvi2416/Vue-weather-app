@@ -1,5 +1,5 @@
 <template>
-  <div id="container" style="height: 400px" class="flex flex-grow"></div>
+  <div id="container" class="flex flex-grow" style="height: 400px"></div>
 </template>
 
 <script>
@@ -9,10 +9,80 @@ import Exporting from "highcharts/modules/exporting";
 // Initialize the Exporting module
 Exporting(Highcharts);
 
+// Custom symbol for three dots (menu-like)
+Highcharts.SVGRenderer.prototype.symbols.menuDots = function (
+  x,
+  y,
+  width,
+  height
+) {
+  return [
+    "M",
+    x - 2,
+    y + height / 2 - 2,
+    "a",
+    2,
+    2,
+    0,
+    1,
+    0,
+    4,
+    0,
+    "a",
+    2,
+    2,
+    0,
+    1,
+    0,
+    -4,
+    0,
+
+    "M",
+    x + width / 2 - 2,
+    y + height / 2 - 2,
+    "a",
+    2,
+    2,
+    0,
+    1,
+    0,
+    4,
+    0,
+    "a",
+    2,
+    2,
+    0,
+    1,
+    0,
+    -4,
+    0,
+
+    "M",
+    x + width - 2,
+    y + height / 2 - 2,
+    "a",
+    2,
+    2,
+    0,
+    1,
+    0,
+    4,
+    0,
+    "a",
+    2,
+    2,
+    0,
+    1,
+    0,
+    -4,
+    0,
+  ];
+};
+
 export default {
   name: "HighChart",
   mounted() {
-    // Initialize the chart once the component is mounted
+    // Initialize the chart after the component is mounted
     this.createChart();
   },
   methods: {
@@ -35,22 +105,36 @@ export default {
         },
         title: {
           text: "Overview",
-          align: "left", // Align the title to the left
-
+          align: "left",
           style: {
             color: "#fcb020",
-            font: ' 34px " Verdana, sans-serif',
+            font: '34px "Verdana, sans-serif"',
             letterSpacing: "1px",
           },
           margin: 20,
         },
         xAxis: {
+          categories: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ],
           labels: {
             style: {
-              color: "rgba(255, 255, 255, .9)",
-              font: 'bold 24px "Trebuchet MS", Verdana, sans-serif',
+              color: "rgba(255, 255, 255, 0.9)",
+              font: 'bold 16px "Trebuchet MS", Verdana, sans-serif',
             },
           },
+          tickAmount: 24,
         },
         yAxis: {
           title: {
@@ -62,23 +146,22 @@ export default {
           },
           labels: {
             style: {
-              color: "rgba(255, 255, 255, .9)",
-              font: 'bold 24px "Trebuchet MS", Verdana, sans-serif',
+              color: "rgba(255, 255, 255, 0.9)",
+              font: 'bold 16px "Trebuchet MS", Verdana, sans-serif',
             },
           },
+          tickAmount: 10,
         },
         series: [
           {
-            name: "Jane",
+            name: "Monthly Data",
             data: [
-              1, 2, 3, 4, 5, 2, 3, 2, 1, 2, 3, 4, 5, 6, 34, 3, 4, 5, 3, 45, 3,
-              4, 2, 4, 3, 4, 3, 4, 3, 4, 3, 4, 5, 0, 23, 32, 4, 2, 3, 2, 3, 2,
-              4, 24, 24, 2, 4, 2, 4, 24, 2, 24, 2, 243, 2, 3, 4, 24, 23, 4,
+              29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4,
+              194.1, 95.6, 54.4,
             ],
             color: "white",
           },
         ],
-
         legend: {
           itemStyle: {
             color: "white", // Change the color of the series name in the legend
@@ -88,13 +171,26 @@ export default {
             color: "#fcb020", // Color when hovering over the series name in the legend
           },
         },
-
         exporting: {
           buttons: {
             contextButton: {
-              symbol: "menu", // Use 'menu' for three dots
+              symbol: "menuDots", // Use custom three dots symbol
               symbolSize: 14, // Adjust size if necessary
               symbolStrokeWidth: 1,
+              theme: {
+                fill: "none", // Removes the background
+                stroke: "none", // Removes the border
+                states: {
+                  hover: {
+                    fill: "none", // Removes background on hover
+                    stroke: "none", // Removes border on hover
+                  },
+                  select: {
+                    fill: "none", // Removes background on select (if needed)
+                    stroke: "none", // Removes border on select
+                  },
+                },
+              },
             },
           },
         },
