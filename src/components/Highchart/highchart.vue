@@ -1,5 +1,7 @@
 <template>
-  <div id="container" class="flex flex-grow" style="height: 400px"></div>
+  <div class="rounded-3xl flex flex-grow mt-14 md:flex-row md:space-x-12">
+    <div id="container" style="height: 400px"></div>
+  </div>
 </template>
 
 <script>
@@ -200,4 +202,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+#container {
+  width: 100%;
+  max-width: 865px;
+}
+</style>

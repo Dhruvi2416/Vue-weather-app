@@ -7,4 +7,7 @@ const app = createApp(App);
 
 app.use(router);
 
+app.config.devtools = false; // Disable devtools in development
+app.config.performance = false; // Disable performance tracing
+
 app.mount("#app");

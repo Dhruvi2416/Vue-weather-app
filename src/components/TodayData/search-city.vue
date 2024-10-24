@@ -7,9 +7,20 @@
       <input
         placeholder="Search City"
         class="bg-weather-bg-transparent rounded-full pl-10 pr-2 py-1"
+        v-model="city"
       />
     </div>
-    <div class="bg-weather-bg-transparent rounded-full text-primary-black">
+    <div>
+      <button
+        type="button"
+        class="p-1 px-4 rounded-full bg-data-bg-green text-primary-black"
+        @click="handleChange"
+        @click.stop
+      >
+        Search
+      </button>
+    </div>
+    <div class="bg-weather-bg-transparent rounded-full text-white">
       <button
         type="button"
         id="buttonC"
@@ -34,13 +45,28 @@
 
 <script>
 // import HomeComponent from "../../views/home-component.vue";
+import Bus from "../../utils/emitter";
 export default {
   name: "SearchCity",
   components: {},
+
   data() {
     return {
       selectedTempScale: "C",
+      city: "",
     };
+  },
+  watch: {
+    selectedTempScale(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        Bus.$emit("tempScaleChange", this.selectedTempScale);
+      }
+    },
+  },
+  methods: {
+    handleChange(event) {
+      this.$emit("changeCity", this.city);
+    },
   },
 };
 </script>
@@ -48,6 +74,7 @@ export default {
 <style scoped>
 .selectedTempScale {
   background-color: #c4e9e9;
+  color: black;
 }
 
 ::-webkit-input-placeholder {
