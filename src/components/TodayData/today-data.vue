@@ -8,7 +8,7 @@
       <ViewMap class="w-1/2 mr-12 mt-14" />
     </div>
     <div class="md:flex md:flex-wrap">
-      <Chart class="mt-14" />
+      <Chart class="mt-14 w-1/2 mr-12" />
       <Forecast class="w-1/2 mr-12 mt-14" />
     </div>
   </div>
@@ -37,7 +37,7 @@ export default {
     return {
       city: "Berlin",
       apiKey: "58bf940718a7fff26b0b3ea1150aa33d",
-      cityData: {},
+      cityData: { city: "Berlin", country: "DE" },
     };
   },
   async mounted() {
@@ -59,16 +59,21 @@ export default {
 
     fetchTodaysData() {
       fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=imperial&appid=${this.apiKey}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=${this.apiKey}`
       )
         .then((response) => response.json())
         .then((data) => {
+          let celsius = data.main.temp;
+          let fTemp = celsius * (9 / 5) + 32;
+          fTemp = Math.floor(fTemp * 100) / 100;
           this.cityData = {
+            api: this.apiKey,
             city: this.city,
             country: data.sys.country,
-            temp: data.main.temp,
+            cTemp: data.main.temp,
             humidity: data.main.humidity,
             windSpeed: data.wind.speed,
+            fTemp: fTemp,
           };
         })
 
