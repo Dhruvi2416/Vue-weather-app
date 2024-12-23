@@ -6,37 +6,45 @@
           <img :src="sunCloud" class="rounded-full w-24 h-24 mr-8" />
           <HomeComponent class="flex flex-col space-y-4">
             <template v-slot:title
-              ><div class="flex md:space-x-10 flex-nowrap">
-                <div>
-                  <div>{{ capitalizeFirstLetter }}</div>
-                  <div class="text-lg">
+              ><div class="flex flex-nowrap">
+                <div style="max-width: 220px" class="mr-6">
+                  <div class="truncate">{{ capitalizeFirstLetter }}</div>
+                  <div class="text-2xl">
                     {{ "(" + this.cityData.country + ")" }}
                   </div>
                 </div>
-                <div>
-                  <div>{{ this.cityData.temp }}º</div>
-                  <div class="text-lg">Temperature</div>
+                <div style="width: 140px" class="mr-6">
+                  <span>
+                    {{
+                      this.selectedTempScale === "C"
+                        ? this.cityData.cTemp
+                        : this.cityData.fTemp
+                    }}</span
+                  ><span class="text-2xl">
+                    º{{ this.selectedTempScale === "C" ? "C" : "F" }}
+                  </span>
+                  <div class="text-2xl">Temperature</div>
                 </div>
-                <div>
+                <div style="width: 80px" class="mr-6">
                   <div class="flex">
                     {{ this.cityData.humidity }}
-                    <div class="text-lg flex items-end">%</div>
+                    <div class="text-2xl flex items-end">%</div>
                   </div>
 
-                  <div class="text-lg">Humidity</div>
+                  <div class="text-2xl">Humidity</div>
                 </div>
                 <div>
                   <div class="flex pl-0">
                     {{ this.cityData.windSpeed }}
-                    <div class="text-lg flex items-end">{{ " " }}km/h</div>
+                    <div class="text-2xl flex items-end">{{ " " }}km/h</div>
                   </div>
-                  <div class="text-lg">Wind Speed</div>
+                  <div class="text-2xl">Wind Speed</div>
                 </div>
               </div>
             </template>
           </HomeComponent>
         </div>
-        <div class="flex p-4 overflow-auto">
+        <div class="flex pt-4 overflow-auto">
           <div v-for="n in arr" :key="n">
             <div
               class="bg-data-bg-green m-2 p-2 rounded-3xl flex flex-col items-center"
@@ -77,7 +85,8 @@ export default {
       default: {
         city: "nan", // Default to an empty string or placeholder
         country: "",
-        temp: null,
+        cTemp: null,
+        fTemp: null,
         humidity: null,
         windSpeed: null,
       },
@@ -101,6 +110,10 @@ export default {
   beforeDestroy() {
     Bus.$off("tempScaleChange");
   },
+
+  async mounted() {
+    await this.fetchHourlyData();
+  },
   computed: {
     capitalizeFirstLetter() {
       if (
@@ -114,6 +127,17 @@ export default {
       } else {
         return ""; // Return a fallback or empty string
       }
+    },
+  },
+  methods: {
+    fetchHourlyData() {
+      fetch(
+        `https://pro.openweathermap.org/data/2.5/forecast/hourly?q=${this.cityData.city}&appid=${this.cityData.api}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("DATA", data);
+        });
     },
   },
 };
